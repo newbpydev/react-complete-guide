@@ -5,18 +5,18 @@ import Card from "../UI/Card";
 import "./Expenses.css";
 
 function Expenses(props) {
-  const [filter, setFilter] = useState("");
-  console.log(filter);
+  const [filterYear, setfilterYear] = useState("2021");
+  console.log(filterYear);
 
-  function filterHander(event) {
+  function filterYearHandler(event) {
     console.log(event.target.value);
-    setFilter(event.target.value);
+    setfilterYear(event.target.value);
   }
 
   console.log(props);
   return (
     <Card className="expenses">
-      <ExpensesFilter onFilter={filterHander} />
+      <ExpensesFilter onFilter={filterYearHandler} selected={filterYear} />
 
       <ExpenseItem
         title={props.expensesList[0].title}
