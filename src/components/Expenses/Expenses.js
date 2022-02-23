@@ -1,13 +1,22 @@
+import React, { useState } from "react";
 import ExpenseItem from "./ExpenseItem";
-import Filter from "../ExpensesFilter/ExpensesFilter";
+import ExpensesFilter from "./ExpensesFilter";
 import Card from "../UI/Card";
 import "./Expenses.css";
 
 function Expenses(props) {
+  const [filter, setFilter] = useState("");
+  console.log(filter);
+
+  function filterHander(event) {
+    console.log(event.target.value);
+    setFilter(event.target.value);
+  }
+
   console.log(props);
   return (
     <Card className="expenses">
-      <Filter />
+      <ExpensesFilter onFilter={filterHander} />
 
       <ExpenseItem
         title={props.expensesList[0].title}
