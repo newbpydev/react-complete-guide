@@ -22,5 +22,4 @@ function ExpenseItem(props) {
     </Card>
   );
 }
-// console.log(props.date.toLocaleString("en-us", options));
 export default ExpenseItem;

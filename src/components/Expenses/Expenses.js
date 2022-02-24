@@ -6,38 +6,43 @@ import "./Expenses.css";
 
 function Expenses(props) {
   const [filterYear, setfilterYear] = useState("2021");
-  console.log(filterYear);
+
+
+  // const filterExpenseItemEls = props.expensesList.filter((expense) =>
+  //   expense.date.getFullYear().toString() === filterYear
+  // );
+
+  // const ExpenseItemEls = filterExpenseItemEls.map((expense) => (
+  //   <ExpenseItem
+  //     key={expense.id}
+  //     title={expense.title}
+  //     amount={expense.amount}
+  //     date={expense.date}
+  //   />
+  // ));
+
+  //! The same code but now together, note the pigiback from filter().map()
+  const ExpenseItemEls = props.expensesList
+    .filter((expense) => expense.date.getFullYear().toString() === filterYear)
+    .map((expense) => (
+      <ExpenseItem
+        key={expense.id}
+        title={expense.title}
+        amount={expense.amount}
+        date={expense.date}
+      />
+    ));
+
 
   function filterYearHandler(event) {
-    console.log(event.target.value);
     setfilterYear(event.target.value);
   }
 
-  console.log(props);
   return (
     <Card className="expenses">
       <ExpensesFilter onFilter={filterYearHandler} selected={filterYear} />
 
-      <ExpenseItem
-        title={props.expensesList[0].title}
-        amount={props.expensesList[0].amount}
-        date={props.expensesList[0].date}
-      />
-      <ExpenseItem
-        title={props.expensesList[1].title}
-        amount={props.expensesList[1].amount}
-        date={props.expensesList[1].date}
-      />
-      <ExpenseItem
-        title={props.expensesList[2].title}
-        amount={props.expensesList[2].amount}
-        date={props.expensesList[2].date}
-      />
-      <ExpenseItem
-        title={props.expensesList[3].title}
-        amount={props.expensesList[3].amount}
-        date={props.expensesList[3].date}
-      />
+      {ExpenseItemEls}
     </Card>
   );
 }
