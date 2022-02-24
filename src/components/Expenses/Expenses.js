@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ExpensesList from "./ExpensesList";
 import ExpenseItem from "./ExpenseItem";
 import ExpensesFilter from "./ExpensesFilter";
 import Card from "../UI/Card";
@@ -6,7 +7,6 @@ import "./Expenses.css";
 
 function Expenses(props) {
   const [filterYear, setfilterYear] = useState("2021");
-
 
   // const filterExpenseItemEls = props.expensesList.filter((expense) =>
   //   expense.date.getFullYear().toString() === filterYear
@@ -33,7 +33,6 @@ function Expenses(props) {
       />
     ));
 
-
   function filterYearHandler(event) {
     setfilterYear(event.target.value);
   }
@@ -42,7 +41,16 @@ function Expenses(props) {
     <Card className="expenses">
       <ExpensesFilter onFilter={filterYearHandler} selected={filterYear} />
 
-      {ExpenseItemEls}
+      {/* {ExpenseItemEls.length === 0 ? (
+        <h2>No expenses found.</h2>
+      ) : (
+        // ExpenseItemEls
+        )} */}
+      
+      <ExpensesList
+        filterYear={filterYear}
+        expensesList={ExpenseItemEls}
+      />
     </Card>
   );
 }
